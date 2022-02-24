@@ -15,8 +15,8 @@ class email:
         from email.encoders import encode_base64
 
      
-        msg = MIMEMultipart()
-        msg['From']="lolatay298@gmail.com"
+        msg = MIMEMultipart() 
+        msg['From']="xxxxxxx@gmail.com" #correo para enviar imagenes
         msg['To']=self.usuario
         msg['Subject']="ALERTA ROSTRO DETECTADO"
 
