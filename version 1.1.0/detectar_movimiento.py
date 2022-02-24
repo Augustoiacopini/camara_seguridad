@@ -45,10 +45,9 @@ class detector:
         people_version.face_detect(ruta)
       return frame_original
 
-    # Informacion de la version de OpenCV instalada
-    print("OpenCV Version: {}".format(cv2.__version__))
+  
+    print("iniciando programa")
 
-    #Iniciamos camara
     cam = cv2.VideoCapture(0)
     if(cam.isOpened() == False):
       print ("ERROR: Camara no operativa")
@@ -62,7 +61,7 @@ class detector:
       cv2.namedWindow(win_original)
       cv2.namedWindow(win_marcas)
 
-    # Leemos las tres primeras imagenes
+   
     t_minus = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
     t = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
     t_plus = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
@@ -72,7 +71,6 @@ class detector:
 
 
     while True:
-      # Calculamos la zonas que se han modificado
       imagen_delta = diffImg(cv2.resize(t_minus,(320,240), interpolation = cv2.INTER_CUBIC), cv2.resize(t,(320,240), interpolation = cv2.INTER_CUBIC), cv2.resize(t_plus,(320,240), interpolation = cv2.INTER_CUBIC))
       imagen_zonas_marcadas = marcar_zonas(imagen_delta, original.copy())
 
@@ -81,17 +79,17 @@ class detector:
         cv2.imshow(win_zonas, imagen_delta)
         cv2.imshow(win_original, original)
 
-      # Leemos las siguientes imagenes
+
       t_minus = t
       t = t_plus
       t_plus = cv2.cvtColor(cam.read()[1], cv2.COLOR_RGB2GRAY)
       original = cv2.resize(cam.read()[1],(320,240), interpolation = cv2.INTER_CUBIC)
 
-      # Si pulsamos la tecla "q" salimos del bucle y finalizamos
+
       if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-    # Finalizamos
+    
     cam.release()
     cv2.destroyAllWindows()
     print ("Fin!!!")
