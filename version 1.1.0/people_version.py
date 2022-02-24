@@ -5,7 +5,7 @@
 class face_detect:
    def __init__(self, imagen_detectada):
        self.imagen_detectada =  imagen_detectada
-       #IMPORTAMOS "opencv".
+       
        
        import cv2
        import mensaje
@@ -13,18 +13,18 @@ class face_detect:
        import datetime
        timestamp = datetime.datetime.now()
        ts = timestamp.strftime("%d %B %Y %I:%M:%S%p")
-       #INTRODUCIMOS RUTA A LA IMAGEN Y EL ARCHIVO "xml".
+      
        imagePath = self.imagen_detectada #<ruta a la imagen fuente>
        cascPath = "haarcascade_frontalface_default.xml"
        cascPath2 = "haarcascade_profileface.xml" 
-       #CARGAMOS CLASIFICADOR.
+      
        faceCascade = cv2.CascadeClassifier(cascPath)
        profile_cascade = cv2.CascadeClassifier(cascPath2)
-       #LEEMOS IMAGEN
+     
        image = cv2.imread(imagePath)
-       #CONVERTIMOS IMAGEN A ESCALA DE GRISES
+    
        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-       #DETECTAMOS ROSTROS EN LA IMAGEN
+     
        faces = faceCascade.detectMultiScale(
            gray,
            scaleFactor=1.3,
