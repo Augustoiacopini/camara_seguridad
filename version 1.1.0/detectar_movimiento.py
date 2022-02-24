@@ -39,8 +39,7 @@ class detector:
         ts = timestamp.strftime("%d %B %Y %I:%M:%S%p")
         cv2.rectangle(frame_original, (2,220), (185, 235), (0,0, 0), -1)
         cv2.putText(frame_original, ts, (5,230), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (255,255,255))
-        #grabamos el fichero con el movimiento detectado
-        ruta = '/'.join(['/','home','augusto','Escritorio','oraculo', 'version 1.1.0','imagenes',ts + '.jpg'])
+        ruta = '/'.join(['/','home', 'version 1.1.0','imagenes',ts + '.jpg'])
         cv2.imwrite(ruta, frame_original)
         people_version.face_detect(ruta)
       return frame_original
@@ -51,7 +50,7 @@ class detector:
     cam = cv2.VideoCapture(0)
     if(cam.isOpened() == False):
       print ("ERROR: Camara no operativa")
-      exit(-1)  #Error acceso a la camara
+      exit(-1)  
 
     if display:
       win_zonas = "Imagen Diferencial"
